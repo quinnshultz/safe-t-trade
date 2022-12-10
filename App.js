@@ -75,6 +75,9 @@ Geocoder.init('AIzaSyDqW8jK0xxnIRKTKXACxIK-q3UerQTiCsA');
 
 // declare our Virtual List App object.
 const MapList = () => {
+
+  const safelocations = [{"key":"43.628768334205844 -116.20251998316142","selected":false,"longitude":-116.2025566,"latitude":43.62882},{"key":"dxb","selected":false,"longitude":55.3656728,"latitude":25.2531745},{"key":"Hyde Park, Boise, Idaho","selected":false,"longitude":-116.2033704,"latitude":43.6301392},{"key":"Ann Morison Park, Boise","selected":false,"longitude":-116.2151282,"latitude":43.6064899},{"key":"Camel's Back Park","selected":false,"longitude":-116.2023442,"latitude":43.634878},{"key":"Grove Plaza, Boise, Idaho","selected":false,"longitude":-116.2047199,"latitude":43.6148497},{"key":"333 North Mark Stall Place, Boise, Idaho","selected":false,"longitude":-116.3017096,"latitude":43.6075938},{"key":"Hyde Park, Boise, Idaho","selected":false,"longitude":-116.2033704,"latitude":43.6301392},{"key":"Ann Morison Park, Boise","selected":true,"longitude":-116.2151282,"latitude":43.6064899},{"key":"Camel's Back Park","selected":false,"longitude":-116.2023442,"latitude":43.634878},{"key":"Grove Plaza, Boise, Idaho","selected":false,"longitude":-116.2047199,"latitude":43.6148497},{"key":"333 North Mark Stall Place, Boise, Idaho","selected":false,"longitude":-116.3017096,"latitude":43.6075938}];
+
   // the state variables that keep our data available for the User Interface.
   const [list, setlist] = useState([]);
   const [autonav, setnav] = useState(true);
@@ -131,13 +134,13 @@ const MapList = () => {
 
   // the following functions modify the data in the list.
   // read data from remote URL
-  function loadButton() {
+  function loadSafeLocations() {
     var urladdress =
       'https://cs.boisestate.edu/~scutchin/cs402/codesnips/loadjson.php?user=ssingler';
     const response = loadList(urladdress, list, setlist);
   }
 
-  function saveButton() {
+  function createItem() {
     var urladdress =
       'https://cs.boisestate.edu/~scutchin/cs402/codesnips/savejson.php?user=ssingler';
     const response = saveList(urladdress, list);
@@ -243,6 +246,7 @@ const MapList = () => {
   };
 
   // mark list elements clicked on as selected or not selected.
+  // TODO: Use this to create a modal
   function toggleList(aindex) {
     const newList = list.map((item, index) => {
       if (aindex == index) {
@@ -276,10 +280,6 @@ const MapList = () => {
     <View style={styles.rowblock}>
       <View style={styles.buttonContainer}>
         <Button style={styles.item} title="+" onPress={() => plusButton()} />
-        <Button title="-" onPress={() => delButton()} />
-        <Button title="Load" onPress={() => loadButton()} />
-        <Button title="Save" onPress={() => saveButton()} />
-        <Button title="Here" onPress={() => currentLoc()} />
       </View>
     </View>
   );
