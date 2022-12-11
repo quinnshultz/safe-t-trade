@@ -1,63 +1,51 @@
 import * as React from 'react';
-import {
-  VirtualizedList,
-  TouchableOpacity,
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { VirtualizedList, TouchableOpacity, Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps';
-import { Marker } from 'react-native-maps';
+import {Marker} from 'react-native-maps';
 
-async function loadList(aurl, alist, asetlist, asetm) {
-  const response = await fetch(aurl); // read the remote data file via fetch 'await' blocks
-  const names = await response.json(); // parse the returned json object
+async function loadList(url,list,setlist,setm) {
+  await fetch(url)
+    .then(response => response.json())
+    .then(names => {
+    names.forEach((item ) => {
+      list.push(item)
+    })
+    }); 
 
-  console.log('loadlist');
-  // add the returned list to the existing list
-  names.forEach((item) => {
-    alist.push(item);
-    console.log(item);
-  });
+ var blist = <Marker
+            coordinate={{latitude: 44.78825,
+            longitude: -122.4324}}
+            title={"title"}
+            description={"description"}
+         />
+  
+  
+   const newList = list.map((item) => {return item})
 
-  var blist = (
-    <Marker
-      coordinate={{ latitude: 44.78825, longitude: -122.4324 }}
-      title={'title'}
-      description={'description'}
-    />
-  );
-
-  const newList = alist.map((item) => {
-    return item;
-  });
-
-  const mList = alist.map((item) => {
-    var newm = (
-      <Marker
-        coordinate={{ latitude: item.latitude, longitude: item.longitude }}
-        title={item.key}
-        description={'College'}
-      />
-    );
-    return newm;
-  });
-  asetlist(newList);
-  asetm(mList);
+   const mList = list.map((item) => {
+                      var newm = <Marker
+                                  coordinate={{latitude: item.latitude, longitude: item.longitude}}
+                                  title={item.key}
+                                  description={"Airport"}
+                                  />
+                      return newm})
+   setlist(newList);
+   setm(mList)
 }
 
-async function saveList(aurl, list) {
-  // POST request using fetch with async/await
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(list),
-  };
-  const response = await fetch(aurl, requestOptions);
-  console.log(response);
+async function streetView(url) {
+  const response = await fetch(url)
 }
 
-export { loadList };
-export { saveList };
+async function saveList(url, list) {
+    const requestOptions = {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'POST',
+        body: JSON.stringify(list)
+    };
+    const response = await fetch(url, requestOptions);
+}
+
+export {loadList}
+export {saveList}
+export {streetView}
