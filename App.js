@@ -150,29 +150,31 @@ const MapList = () => {
       setshowme(true);
     }
    
-    function addLocation(alocation) { 
+    function addLocation(aitem) { 
       // lets put our item at the front of the list
       //var aloc = Geocoder.from("Boise Idaho, USA");
-      
-      var location = {};
-      
-      Geocoder.from(alocation)
-       
-		.then(json => {
-			location = json.results[0].geometry.location;
-            var newList = [{key: alocation, selected: false, longitude: location.lng, latitude: location.lat }]
-      var amark = <Marker
-                        coordinate={{latitude: location.lat, longitude: location.lng}}
-                                  title={alocation}
-                                  description={"Location"}
-                                  />
+      var newList = [{key: aitem, selected: false}]
       newList = newList.concat(list)
+      setlist(newList)
+    //   var location = {};
       
-      var marklist = markers.concat(amark);
-      setlist(newList);
-      setMarks(marklist);
-    })
-		.catch(error => console.warn(error));
+    //   Geocoder.from(alocation)
+       
+		// .then(json => {
+		// 	location = json.results[0].geometry.location;
+    //         var newList = [{key: alocation, selected: false, longitude: location.lng, latitude: location.lat }]
+    //   var amark = <Marker
+    //                     coordinate={{latitude: location.lat, longitude: location.lng}}
+    //                               title={alocation}
+    //                               description={"Location"}
+    //                               />
+    //   newList = newList.concat(list)
+      
+    //   var marklist = markers.concat(amark);
+    //   setlist(newList);
+    //   setMarks(marklist);
+    // })
+		// .catch(error => console.warn(error));
 
     
     }
@@ -305,11 +307,7 @@ const MapList = () => {
    // lay out the row of buttons.
    var buttonrow = <View style={styles.rowblock} >
               <View style={styles.buttonContainer}>
-               <Button style={styles.item} title="Add" onPress={() => plusButton()}  />
-               <Button title="Delete" onPress={() => delButton()}/>
-              <Button title="Load" onPress={() => loadButton()}/>
-              <Button title="Save" onPress={() => saveButton()}/>
-              <Button title="StrtView" onPress={() => streetViewButton()}/>
+               <Button style={styles.item} title="Add Item" onPress={() => plusButton()}  />
               </View>
               </View>
 
@@ -341,8 +339,8 @@ const MapList = () => {
      {buttonrow}
       {avirtlist} 
       <DialogInput isDialogVisible={ashowme} 
-          title="Enter Address"
-          message="Enter The Address To Add"
+          title="Enter Item"
+          message="Enter The Item To Add"
           submitInput={ (inputText) =>{setshowme(false); addLocation(inputText)}}
           closeDialog={() => {setshowme(false)}}
           >
@@ -355,8 +353,8 @@ const MapList = () => {
      {buttonrow}
       {avirtlist} 
       <DialogInput isDialogVisible={ashowme} 
-          title="Enter Address"
-          message="Enter The Address To Add"
+          title="Enter Item Name"
+          message="Item Name"
           submitInput={ (inputText) =>{setshowme(false); addLocation(inputText)}}
           closeDialog={() => {setshowme(false)}}
           >
