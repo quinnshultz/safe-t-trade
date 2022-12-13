@@ -1,7 +1,7 @@
 # The Safe Marketplace
 This app allows two people to meet at a predetermined "Safe Location" to exchange goods or services.
 
-![alt text](https://raw.githubusercontent.com/quinnshultz/safe-t-trade/main/assets/screenshot.jpg "A screenshot of the marketplace w/ safe location map.")
+<img src="https://raw.githubusercontent.com/quinnshultz/safe-t-trade/main/assets/screenshot.jpg" alt="A screenshot of the marketplace w/ safe location map." width="200"/>
 
 ## Using the Application
 This is a React Native application with support for iOS, and Web. This was developed as a "Snack" on [Expo Dev](https://expo.dev/).
