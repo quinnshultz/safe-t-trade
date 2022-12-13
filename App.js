@@ -1,9 +1,10 @@
 // import the necessary packages
 import React, {useState,useEffect, Component} from 'react';
-import {Alert, Dimensions, VirtualizedList, TouchableOpacity, Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import {Alert, Modal, Pressable, Dimensions, VirtualizedList, TouchableOpacity, Button, FlatList, StyleSheet, Text, View } from 'react-native';
 import {loadList,saveList,streetView} from './components/remoteAccess'
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
+import Dialog from 'react-native-dialog';
 import { useWindowDimensions } from 'react-native';
 import DialogInput from 'react-native-dialog-input';
 import Geocoder from 'react-native-geocoding'
@@ -93,6 +94,7 @@ const MapList = () => {
     const [list, setlist] = useState([]);
     const [autonav,setnav] = useState(true);
     const [ashowme,setshowme] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
   
     const [markers,setMarks] = useState();
@@ -259,7 +261,9 @@ const MapList = () => {
         setlist(newList);
         setMarks(markList);
     } 
- 
+
+    // testing modal implementation
+    
  // this function is called to draw a single item inside of the virtual list
     const renderItem = ({ item,index }) => {
         const backgroundColor = item.selected ? 'black' : 'white';
@@ -273,7 +277,6 @@ const MapList = () => {
     };
 
     function toggleList(aindex){
-  
       const newList = list.map((item,index) => {    
         if (aindex == index)
         {
@@ -289,6 +292,7 @@ const MapList = () => {
             lat1 = item.latitude
             long1 = item.longitude
             }
+            setModalVisible(true);
             item.selected = true;
           }
           
@@ -346,12 +350,20 @@ const MapList = () => {
           >
       <Text>Something</Text>
       </DialogInput>
+      <DialogInput isDialogVisible={modalVisible}
+          title="testing"
+          message="here"
+          submitInput={ (inputText) =>{setModalVisible(false); console.log(inputText)}}
+          closeDialog={() => {setModalVisible(false)}}
+          >
+        <Text>Something</Text>
+        </DialogInput>
       </View>
 
    var ablist=<View style={styles.bcontainer} >
      <View >
      {buttonrow}
-      {avirtlist} 
+     {avirtlist} 
       <DialogInput isDialogVisible={ashowme} 
           title="Enter Item Name"
           message="Item Name"
