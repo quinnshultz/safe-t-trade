@@ -1,11 +1,19 @@
-# Sample Snack app
+# The Safe Marketplace
+This app allows two people to meet at a predetermined "Safe Location" to exchange goods or services.
 
-Open the `App.js` file to start writing some code. You can preview the changes directly on your phone or tablet by scanning the **QR code** or use the iOS or Android emulators. When you're done, click **Save** and share the link!
+## Using the Application
+This is a React Native application with support for iOS, and Web. This was developed as a "Snack" on [Expo Dev](https://expo.dev/).
+This application can be deployed and run from the Expo Go mobile application.
 
-When you're ready to see everything that Expo provides (or if you want to use your own editor) you can **Download** your project and use it with [expo-cli](https://docs.expo.io/get-started/installation).
+## Design decisions
+For this demonstration, it is assumed that the user has already logged in. The map on the top of the screen displays "Safe Locations". Underneath, rests a list of
+items for sale. Tapping on an item opens the purchase menu.
 
-All projects created in Snack are publicly available, so you can easily share the link to this project via link, or embed it on a web page with the `<>` button.
+## What could be added in the future
+The list of locations is currently stored in the application, this could be moved to a remote endpoint for easier updates. Login is currently the most pressing
+feature!
 
-If you're having problems, you can tweet to us [@expo](https://twitter.com/expo) or ask in our [forums](https://forums.expo.io/c/snack).
-
-Snack is Open Source. You can find the code on the [GitHub repo](https://github.com/expo/snack).
+## Authors
+* Stephen Singler
+* Humzza Hargan
+* Quinn Shultz
