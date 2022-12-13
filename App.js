@@ -13,19 +13,11 @@ import * as Location from 'expo-location';
 // create a style sheet for handling visual appearances, spacing, widths, and colors
 const styles = StyleSheet.create({
   container: {
-   /*flex: 4,
-   paddingTop: 22,
-   flexDirection: "column",
-   borderWidth: 5*/
    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
   },
   bcontainer: {
-   /*flex: 4,
-   paddingTop: 22,
-   flexDirection: "column",
-   borderWidth: 5*/
    flexDirection: "row",
    flex: 1,
     backgroundColor: '#fff',
@@ -34,8 +26,7 @@ const styles = StyleSheet.create({
   list: {
    flex: 20,
    paddingTop: 2,
-   borderWidth: 5,
-   borderWidth: 5,
+   borderWidth: 5
   },
   
   rowblock: {
@@ -51,10 +42,7 @@ const styles = StyleSheet.create({
       borderWidth: 2,
       padding: 0,
       paddingTop: 0
-  },
-   
-  map:  {width: Dimensions.get('window').width, height: Dimensions.get('window').height/2},
-  label:{ flex: 0.2, fontSize: 22, padding: 5}
+  }
 });
 
 const itemstyles = StyleSheet.create({
@@ -122,8 +110,6 @@ const MapList = () => {
                       return newm})
         setMarks(mList)
         setlist(dummyItems)
-        //var urladdress = "https://cs.boisestate.edu/~scutchin/cs402/codesnips/loadjson.php?user=humzzamap"
-        //const response = loadList(urladdress,list,setlist,setMarks)
       }
      
     }, [list])
@@ -351,8 +337,8 @@ const MapList = () => {
       <Text>Something</Text>
       </DialogInput>
       <DialogInput isDialogVisible={modalVisible}
-          title="testing"
-          message="here"
+          title="Purchase Item"
+          message="Enter bid price:"
           submitInput={ (inputText) =>{setModalVisible(false); console.log(inputText)}}
           closeDialog={() => {setModalVisible(false)}}
           >
@@ -382,11 +368,6 @@ const MapList = () => {
     return ablist;
   }    
   return (alist)
- 
-
- 
 }
-
- 
 
 export default MapList;
